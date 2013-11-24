@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!--
+    gunakan conversionPattern berikut sesuai kebutuhan
+    complete layout = %d %5p| %c.%M(%L) | %m%n
+    simple layout = %d %5p| %m%n
+    -->
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d %5p| %c.%M(%L) | %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="R" class="org.apache.log4j.RollingFileAppender">
+            <param name="File" value="../logs/sambaltomat.log"/>
+            <param name="MaxFileSize" value="2000KB"/>
+            <param name="MaxBackupIndex" value="10"/>
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern"
+                    value="%d %5p| %c.%M(%L) | %m%n"/>
+            </layout>
+    </appender>
+
+    <!--sourceforge component-->
+    <logger name="net.sf">
+        <level value="FATAL"/>
+    </logger>
+    <!--left menu component logger-->
+    <logger name="net.sf.navigator">
+        <level value="OFF"/>
+    </logger>
+    <logger name="org.apache">
+        <level value="FATAL"/>
+    </logger>
+    <!--connection manager related logger-->
+    <logger name="org.apache.commons.dbcp">
+        <level value="ALL"/>
+    </logger>
+    <logger name="com.opensymphony">
+        <level value="OFF"/>
+    </logger>
+
+    <logger name="org.springframework.web.servlet">
+        <level value="ALL"/>
+    </logger>
+
+    <logger name="org.springframework.web">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="OFF"/>
+    </logger>
+
+    <logger name="org.hibernate">
+        <level value="ALL"/>
+    </logger>
+
+    <logger name="id.co.sambaltomat">
+        <level value="DEBUG"/>
+    </logger>
+
+    <!--setting global untuk logger yg tidak diset <LEVEL></LEVEL>-->
+    <root>
+        <level value="ALL"/>  <!--set ALL (aktif) atau OFF (inaktif)-->
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</log4j:configuration>
